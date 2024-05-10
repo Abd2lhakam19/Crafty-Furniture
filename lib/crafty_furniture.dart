@@ -15,6 +15,9 @@ class CraftyFurniture extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.onBoarding,
         onGenerateRoute: appRouter.generateRoute,
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xffF9F9F9),
+        ),
       ),
     );
   }
