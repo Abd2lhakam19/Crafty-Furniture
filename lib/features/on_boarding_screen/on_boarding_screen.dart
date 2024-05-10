@@ -49,25 +49,27 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               },
               itemBuilder: (context, index) {
                 final item = model[index];
-                return Column(
-                  children: [
-                    Image.asset(
-                      item.pic,
-                      fit: BoxFit.cover,
-                    ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    Text(
-                      item.dec,
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w500,
-                        color: const Color(0xff101817),
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        item.pic,
+                        fit: BoxFit.cover,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Text(
+                        item.dec,
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.w500,
+                          color: const Color(0xff101817),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 );
               },
               itemCount: model.length,
