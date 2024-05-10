@@ -17,6 +17,11 @@ class CraftyFurniture extends StatelessWidget {
         onGenerateRoute: appRouter.generateRoute,
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xffF9F9F9),
+          appBarTheme: const AppBarTheme(
+            color: Colors.transparent,
+            elevation: 0.0,
+            toolbarHeight: 120,
+          ),
         ),
       ),
     );

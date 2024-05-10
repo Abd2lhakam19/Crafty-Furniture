@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_app/core/routing/routes.dart';
 
 import 'model/on_boarding_model.dart';
 
@@ -117,7 +118,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             vertical: 15.h,
                           ),
                         )),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.signIn);
+                    },
                     child: Text(
                       "Get Statrted",
                       style: TextStyle(
