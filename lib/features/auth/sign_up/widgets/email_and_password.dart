@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_app/features/auth/sign_up/cubit/sign_up_cubit.dart';
 
 import '../../../../core/helper/app_regex.dart';
 import '../../../../core/widgets/app_text_field.dart';
@@ -13,13 +15,11 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController passwordController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    passwordController = context.read<SignUpCubit>().passwordController;
     setupPasswordControllerListener();
   }
 
@@ -45,68 +45,77 @@ class _SignUpFormState extends State<SignUpForm> {
   bool hasMinLength = false;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppTextField(
-          controller: nameController,
-          hintText: "Enter Your Full Name",
-          label: "Name",
-          validator: (name) {
-            if (name == null || name.isEmpty) {
-              return "Please Enter Vaild Name";
-            }
-          },
-        ),
-        SizedBox(
-          height: 40.h,
-        ),
-        AppTextField(
-          controller: emailController,
-          hintText: "Enter Your Email",
-          label: "Email",
-          validator: (email) {
-            if (email == null ||
-                email.isEmpty ||
-                !AppRegex.isEmailValid(email)) {
-              return "Please Enter Valid Email";
-            }
-          },
-        ),
-        SizedBox(
-          height: 40.h,
-        ),
-        AppTextField(
-          isObscure: isObscure,
-          suffixIcon: GestureDetector(
-            onTap: () {
-              setState(() {
-                isObscure = !isObscure;
-              });
+    return Form(
+      key: context.read<SignUpCubit>().formKey,
+      child: Column(
+        children: [
+          AppTextField(
+            controller: context.read<SignUpCubit>().nameController,
+            hintText: "Enter Your Full Name",
+            label: "Name",
+            validator: (name) {
+              if (name == null || name.isEmpty) {
+                return "Please Enter Vaild Name";
+              }
             },
-            child: Icon(
-              isObscure ? Icons.visibility_off : Icons.visibility,
-            ),
           ),
-          controller: passwordController,
-          hintText: "Enter Your Password",
-          label: "Password",
-          validator: (password) {
-            if (password == null || password.isEmpty) {
-              return "Please Enter Valid Password";
-            }
-          },
-        ),
-        SizedBox(
-          height: 30.h,
-        ),
-        PasswordValidations(
-          hasLowerCase: hasLowercase,
-          hasUpperCase: hasUppercase,
-          hasSpecialCharacters: hasSpecialCharacters,
-          hasNumber: hasNumber,
-          hasMinLength: hasMinLength,
-        ),
-      ],
+          SizedBox(
+            height: 40.h,
+          ),
+          AppTextField(
+            controller: context.read<SignUpCubit>().emailController,
+            hintText: "Enter Your Email",
+            label: "Email",
+            validator: (email) {
+              if (email == null ||
+                  email.isEmpty ||
+                  !AppRegex.isEmailValid(email)) {
+                return "Please Enter Valid Email";
+              }
+            },
+          ),
+          SizedBox(
+            height: 40.h,
+          ),
+          AppTextField(
+            isObscure: isObscure,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isObscure = !isObscure;
+                });
+              },
+              child: Icon(
+                isObscure ? Icons.visibility_off : Icons.visibility,
+              ),
+            ),
+            controller: context.read<SignUpCubit>().passwordController,
+            hintText: "Enter Your Password",
+            label: "Password",
+            validator: (password) {
+              if (password == null ||
+                  password.isEmpty ||
+                  !hasLowercase ||
+                  !hasNumber ||
+                  !hasMinLength ||
+                  !hasSpecialCharacters ||
+                  !hasUppercase) {
+                return "Please Enter Valid Password";
+              }
+            },
+          ),
+          SizedBox(
+            height: 30.h,
+          ),
+          PasswordValidations(
+            hasLowerCase: hasLowercase,
+            hasUpperCase: hasUppercase,
+            hasSpecialCharacters: hasSpecialCharacters,
+            hasNumber: hasNumber,
+            hasMinLength: hasMinLength,
+          ),
+        ],
+      ),
     );
   }
 }

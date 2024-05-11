@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/core/routing/routes.dart';
 import 'package:mobile_app/features/auth/sign_in/sign_in.dart';
+import 'package:mobile_app/features/auth/sign_up/cubit/sign_up_cubit.dart';
 import 'package:mobile_app/features/auth/sign_up/sign_up.dart';
+import 'package:mobile_app/features/home/home_screen.dart';
 import 'package:mobile_app/features/on_boarding_screen/on_boarding_screen.dart';
 
 class AppRouter {
@@ -17,7 +20,14 @@ class AppRouter {
         );
       case Routes.signUp:
         return MaterialPageRoute(
-          builder: (context) => const SignUpScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => SignUpCubit(),
+            child: const SignUpScreen(),
+          ),
+        );
+      case Routes.homeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
         );
       default:
         return MaterialPageRoute(
