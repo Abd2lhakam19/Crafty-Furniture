@@ -13,8 +13,6 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,40 +20,37 @@ class _SignInScreenState extends State<SignInScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const TopScreen(),
-                  SizedBox(
-                    height: 32.h,
-                  ),
-                  const EmailAndPassword(),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Forgot Password ?",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xff101817),
-                        fontWeight: FontWeight.w400,
-                      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const TopScreen(),
+                SizedBox(
+                  height: 32.h,
+                ),
+                const EmailAndPassword(),
+                SizedBox(
+                  height: 16.h,
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "Forgot Password ?",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: const Color(0xff101817),
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(
-                    height: 35.h,
-                  ),
-                  const SignInButtons(),
-                  SizedBox(
-                    height: 24.h,
-                  ),
-                  const DontHaveAccount(),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 35.h,
+                ),
+                const SignInButtons(),
+                SizedBox(
+                  height: 24.h,
+                ),
+                const DontHaveAccount(),
+              ],
             ),
           ),
         ),

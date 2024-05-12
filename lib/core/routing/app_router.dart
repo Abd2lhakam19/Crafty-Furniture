@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/core/routing/routes.dart';
+import 'package:mobile_app/features/auth/sign_in/cubit/sign_in_cubit.dart';
 import 'package:mobile_app/features/auth/sign_in/sign_in.dart';
 import 'package:mobile_app/features/auth/sign_up/cubit/sign_up_cubit.dart';
 import 'package:mobile_app/features/auth/sign_up/sign_up.dart';
@@ -16,7 +17,10 @@ class AppRouter {
         );
       case Routes.signIn:
         return MaterialPageRoute(
-          builder: (context) => const SignInScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => SignInCubit(),
+            child: const SignInScreen(),
+          ),
         );
       case Routes.signUp:
         return MaterialPageRoute(

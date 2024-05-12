@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobile_app/core/routing/routes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,12 +12,14 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        title: ,
         actions: [
           GestureDetector(
-            onTap: () {
-              FirebaseAuth.instance.signOut().then((value) {
+            onTap: () async {
+              await FirebaseAuth.instance.signOut().then((value) {
                 Navigator.pushNamed(context, Routes.signIn);
               });
+              await GoogleSignIn().signOut();
             },
             child: const Icon(Icons.logout),
           ),
