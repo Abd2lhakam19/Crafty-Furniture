@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "252775384238",
+    "project_id": "crafty-furniture-95d1d",
+    "storage_bucket": "crafty-furniture-95d1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252775384238:android:ed07876a641be06452193f",
+        "android_client_info": {
+          "package_name": "com.example.mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvuVrIErA2Zl4wCJlQFH7hO5AQB5-hMiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
